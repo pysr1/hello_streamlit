@@ -1,3 +1,5 @@
 import streamlit as st 
+import duckdb 
 
-st.write('hello world')
+results = duckdb.sql("SELECT 42").df()
+st.write('results')
