@@ -1,5 +1,6 @@
 import streamlit as st 
 import duckdb 
 
-results = duckdb.sql("SELECT range(1, 100)").df()
-st.write(results)
+duckdb.sql("INSTALL httpfs; LOAD httpfs").df()
+results = duckdb.sql("SELECT * FROM read_csv_auto('https://data.seattle.gov/api/views/2z5v-ecg8/rows.csv?accessType=DOWNLOAD')").df()
+st.write(results.head(10))
